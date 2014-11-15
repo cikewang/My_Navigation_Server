@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<title>我的导航</title>
+		<link rel="shortcut icon" href="./images/my_navigation.ico" type="image/x-icon">
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+		<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+		<!-- <link rel="stylesheet" href="./css/cover.css"> -->
+		<link rel="stylesheet" href="./css/signin.css">
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<script src="./js/jquery.cookie.js"></script>
+		<script src="./js/myscript.js"></script>
+	</head>
+
+	<body>
+		<div>
+			<nav class="navbar navbar-default" role="navigation">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <a class="navbar-brand" id="mynavigation" href="http://cikewang.com">我的导航</a>
+			    </div>
+			    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">	
+
+					<div class="user-info-div" style="display:none;">	
+						<a class="text-primary u"></a>&nbsp;&nbsp;/&nbsp;&nbsp;
+						<a href="javascript:void(0);" id="loginOut" class="text-primary">退出</a>
+					</div>
+			    	<ul class="user-login-reg-div nav navbar-nav navbar-right">
+			    	    <li>
+			    	    	<form class="form-inline login-form-div" role="form" style="display:none;"> 
+			    	    		<div class="user-login-msg pull-left hide">
+									<h6 class="puul-right text-danger"></h6>
+								</div>
+			    	    		<div class="username-div input-group input-group-sm  ">
+			    	    			<span class="input-group-addon">用户名：</span>
+			    	    			<input type="text" id="username" name="username" width=20 class="form-control" placeholder="用户名/手机号/邮箱">
+			    	    		</div>
+			    	    		<div class="password-div input-group input-group-sm  ">
+			    	    			<span class="input-group-addon">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+			    	    			<input type="password" id="password" name="password" width=20 class="form-control" placeholder="密码">
+			    	    		</div>
+			    	    		<button class="btn btn-primary btn-xs p10" data-loading-text="Loading..." type="button" id="login">
+			    	    		点击登陆
+			    	    		</button>
+			    	    	</form>
+			    	    	<a href="#" class="login-a">登录</a>
+			    	    </li>
+			    	    <li>
+			    	    	<form class="form-inline reg-form-div" role="form" style="display:none;"> 
+			    	    		<div class="user-reg-msg pull-left hide">
+									<h6 class="puul-right text-danger"></h6>
+								</div>
+			    	    		<div class="username-reg-div input-group input-group-sm puul-left">
+			    	    			<span class="input-group-addon">用户名：</span>
+			    	    			<input type="text" id="reg_username" name="reg_username" width=20 class="form-control" placeholder="用户名/手机号/邮箱">
+			    	    		</div>
+			    	    		<div class="password-reg-div input-group input-group-sm puul-left">
+			    	    			<span class="input-group-addon">密&nbsp;&nbsp;&nbsp;&nbsp;码：</span>
+			    	    			<input type="text" id="reg_password" name="reg_password" width=20 class="form-control" placeholder="密码">
+			    	    		</div>
+			    	    		<div class="auth-reg-div input-group input-group-sm puul-left">
+			    	    			<span class="input-group-addon">验证码：</span>
+			    	    			<input type="text" id="auth_code" name="auth_code" width=20 class="form-control" placeholder="验证码">
+			    	    		</div>
+			    	    		<button class="btn btn-primary btn-xs p10" data-loading-text="Loading..." type="button" id="register-reg">
+			    	    		提交注册
+			    	    		</button>
+			    	    	</form>
+			    	    	<a href="#" class="reg-a">注册</a>
+			    	    </li>
+			    	</ul>
+			    </div>
+			  </div>
+			</nav>
+		</div>
+		<div style="margin: 10px auto;width: 938px;">		
+			<div id="my-navigation-div">
+				<?php if( !empty($url_list)){ ?> 
+			    <dl class="dl-horizontal">
+			    	<?php foreach ($url_list as $key => $value) { ?>
+			      	<dt><?php print_r($value['cate_name']); ?></dt>
+			      	<dd>
+			      		<ul class="list-inline">
+			      			<?php foreach ($value['urls'] as $key => $urls) { ?>
+			      			<li>
+			      			<a target='_blank' href="<?php echo $urls['url'];?>">
+			      				<?php if(!empty($urls['icon'])) { ?><img src="<?php echo $urls['icon'];?>" width=16><?php }?>
+			      				&nbsp;<?php echo $urls['page_name'];?></a>
+			      			</li>
+			      			<?php  } ?>
+			      		</ul>
+			      	</dd>
+			      	<?php } ?>
+			    </dl>
+			    <?php } ?>
+			    
+			  </div>
+		</div>
+
+		<div class="souchang-div" style="display:none;">
+			<form class="form-inline" role="form" action="http://localhost/cikewang.com/index.php?p=navigation&c=default&a=add">
+				<div class="form-group">
+					<div class="input-group input-group-sm">
+						<div class="input-group-addon">分类：</div>
+						<input class="form-control" type="text" placeholder="网址分类" id="cate_name" name="cate_name" value="" >
+					</div>
+				</div>	
+				<div class="form-group">
+					<div class="input-group input-group-sm">
+					  <div class="input-group-addon input-group-sm">名称：</div>
+					  <input class="form-control" type="text" placeholder="网站名称" id="page_name" name="page_name" value="">
+					</div>
+				</div>
+				<div class="form-group ">
+					<div class="input-group input-group-sm">
+					  <div class="input-group-addon">网址：</div>
+					  <input class="form-control" type="text" placeholder="网站地址" id="url" name="url" value="">
+					</div>
+				</div>
+			  <button type="submit" class="btn btn-primary btn-xs">提交收藏</button>
+			</form>
+		</div>
+
+	</body>
+</html>

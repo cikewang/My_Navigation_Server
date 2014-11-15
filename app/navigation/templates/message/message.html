@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>提示信息</title>
+<?php if (!empty($url)):?>
+<meta http-equiv="Refresh" content="<?php echo $t?>; url=<?php echo $url?>" /> 
+<?php endif?>
+<meta name="keywords" content="提示信息" />
+<style type="text/css">
+/* 初始化CSS */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend,img{margin:0;padding:0;}
+fieldset,img{border:none;}
+address,caption,cite,code,dfn,th,var{font-style:normal;font-weight:normal;}
+ul,ol{list-style:none;}
+select,input{vertical-align:middle;}
+select,input,textarea{font-size:12px;margin:0;}
+table{border-collapse:collapse;}
+body{background:#fff;color:#333;padding:5px 0;font:12px/20px "SimSun","宋体","Arial Narrow";}
+
+.clearfix:after{content:".";display:block;height:0;visibility:hidden;clear:both;}
+.clearfix{zoom:1;}
+.clearit{clear:both;height:0;font-size:0;overflow:hidden;}
+
+a{color:#009;text-decoration:none;}
+a:visited{color:#800080;}
+a:hover, a:active, a:focus{color:#f00;text-decoration:underline;}
+a.linkRed:link,a.linkRed:visited{color:#f00!important;}/* 红色 */
+a.linkRed:hover{color:#c00!important;}
+a.linkRed01:link,a.linkRed01:visited{color:red!important}
+a.linkRed01:hover{color:red!important}
+
+.alert{margin:150px auto;height:201px;padding:75px 30px 0;color:#482400;font-size:14px;line-height:48px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="alert">
+<?php echo $msg?><?php if ($url != ''):?><div><a href="<?php echo $url?>">点击直接跳转</a></div><?php endif?>
+</div>
+</body>
+</html>

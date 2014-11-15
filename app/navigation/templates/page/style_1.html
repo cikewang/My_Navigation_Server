@@ -1,0 +1,27 @@
+<?php
+//{=*$totalPage:总页数*=} {=*$pageSize:每页显示条数*=} {=*$prePage:上一页页码*=} {=*$nextPage:下一页页码*=} {=*$firstPage:第一页页码*=} {=*$lastPage:最后页页码*=} {=*$totalNum:总条目数*=} {=*$pName:分页参数名*=} {=*$page:当前页页码*=} {=*$paramStr:继承参数*=}
+?>
+<link id="bootstrap_221" rel="stylesheet" type="text/css" class="library" href="http://lib.sinaapp.com/js/bootstrap/latest/css/bootstrap.min.css">
+<div class="pagination">
+    <ul>
+        <li class="disabled"><span>共<?php echo $totalPage?>页</span></li>
+
+        <?php if ($page != 1):?>
+        <li><a href="<?php echo $paramStr?><?php echo $pName?>=<?php echo $prePage?>">上一页</a></li>
+        <?php else:?>
+        <li class="disabled"><span>上一页</span></li>
+        <?php endif?>
+
+        <?php if ($page > 2):?><li><a href="<?php echo $paramStr?><?php echo $pName?>=<?php echo $page-2;?>"><?php echo $page-2;?></a></li><?php endif?>
+        <?php if ($page > 1):?><li><a href="<?php echo $paramStr?><?php echo $pName?>=<?php echo $page-1;?>"><?php echo $page-1;?></a></li><?php endif?>
+        <li class="active"><span><?php echo $page?></span></li>
+        <?php if (($lastPage - $page) >= 1):?><li><a href="<?php echo $paramStr?><?php echo $pName?>=<?php echo $page+1;?>"><?php echo $page+1;?></a></li><?php endif?>
+        <?php if (($lastPage - $page) >= 2):?><li><a href="<?php echo $paramStr?><?php echo $pName?>=<?php echo $page+2;?>"><?php echo $page+2;?></a></li><?php endif?>
+
+        <?php if (($lastPage - $page) >= 1):?>
+        <li><a href="<?php echo $paramStr?><?php echo $pName?>=<?php echo $nextPage?>">下一页</a></li>
+        <?php else:?>
+        <li class="disabled"><span>下一页</span></li>
+        <?php endif?>
+    </ul>
+</div>
