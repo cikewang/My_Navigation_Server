@@ -47,10 +47,10 @@ class DefaultController extends BaseController {
 		$msg = array('code' => 0, 'msg'=>'');
 
 		$user_id = trim($_POST['uid']) !='' ? trim($_POST['uid']) : '';
-		$cate_name = trim($_POST['cate_name']) == '' ? '未分类' : trim($_POST['cate_name']);
+		$cate_name = isset($_POST['cate_name']) && (trim($_POST['cate_name']) == '') ? '未分类' : trim($_POST['cate_name']);
 		$page_name = trim($_POST['web_name']);
 		$url = trim($_POST['web_url']);
-		$icon = trim($_POST['web_icon_url']);
+		$icon = isset($_POST['web_icon_url']) && (trim($_POST['web_icon_url']) != '') ? trim($_POST['web_icon_url']) : '';
 
 		if ($user_id != $_SESSION['uid']) {
 			$msg = array('code' => -1, 'msg'=>'系统错误，请重新登录');

@@ -163,7 +163,7 @@ $(document).ready(function(){
 <!--////////////////////////////////////////////////////////////////////////////////////////////-->
 
 	$("#souchang").click(function(){
-		var category = $("#category").val();
+		var cate_name = $("#cate_name").val();
 		var web_name = $("#web_name").val();
 		var web_url = $("#web_url").val();
 		var web_icon_url = $("#web_icon_url").val();
@@ -176,11 +176,50 @@ $(document).ready(function(){
 			return false;
 		};
 
+		if (cate_name == '' || typeof(cate_name) == 'undefined') 
+		{
+			$(".cate-name-div").addClass('has-warning');
+			$(".sc-msg").removeClass('hide');
+			$(".sc-msg h6").html('请填写网站分类');
+			return false;
+		}
+		else
+		{
+			$(".cate-name-div").removeClass('has-warning');
+			$(".sc-msg").addClass('hide');
+		}
+
+		if (web_name == '' || typeof(web_name) == 'undefined') 
+		{
+			$(".web-name-div").addClass('has-warning');
+			$(".sc-msg").removeClass('hide');
+			$(".sc-msg h6").html('请填写网站名称');
+			return false;
+		}
+		else
+		{
+			$(".web-name-div").removeClass('has-warning');
+			$(".sc-msg").addClass('hide');
+		}
+
+		if (web_url == '' || typeof(web_url) == 'undefined') 
+		{
+			$(".web-url-div").addClass('has-warning');
+			$(".sc-msg").removeClass('hide');
+			$(".sc-msg h6").html('请填写网站地址');
+			return false;
+		}
+		else
+		{
+			$(".web-url-div").removeClass('has-warning');
+			$(".sc-msg").addClass('hide');
+		}
+
 		$.ajax({
 			type: "POST",
 			dataType:"json",
 			url: "http://cikewang.com/index.php?p=navigation&c=default&a=add",
-			data: {"uid":$.cookie("uid"),"web_url":web_url,"web_name":web_name,'web_icon_url':web_icon_url,"cate_name":category},
+			data: {"uid":$.cookie("uid"),"web_url":web_url,"web_name":web_name,'web_icon_url':web_icon_url,"cate_name":cate_name},
 			success: function(data){
 				if (data.code < 0) 
 				{
