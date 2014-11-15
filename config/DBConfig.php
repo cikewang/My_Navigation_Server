@@ -40,17 +40,17 @@ $config = array(
 			'product'	=>	array(
 				'master'	=> array(
 					'host' 		=>	'127.0.0.1',
-					'username' 	=>	'',
-					'password'	=>	'',
-					'database'	=>	'',
+					'username' 	=>	'navigation',
+					'password'	=>	'123456',
+					'database'	=>	'navigation',
 					'port'		=>	27017,
 					'charset'	=>	'UTF-8'
 				),
 				'slave'		=>	array(
 					'host' 		=>	'127.0.0.1',
-					'username' 	=>	'',
-					'password'	=>	'',
-					'database'	=>	'',
+					'username' 	=>	'navigation',
+					'password'	=>	'123456',
+					'database'	=>	'navigation',
 					'port'		=>	27017,
 					'charset'	=>	'UTF-8'
 				)
