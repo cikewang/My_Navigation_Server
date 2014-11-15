@@ -149,15 +149,23 @@ $(document).ready(function(){
 	});
 
 	$("#loginOut").click(function(){
-		$.removeCookie('username');
-		$.removeCookie('uid');
-		$("#username").val('');
-		$("#password").val('');
-		$(".user-info-div").css("display","none");
-		$(".user-login-reg-div").css("display","");
-		$(".user-login-msg").addClass('hide');
-		$(".user-login-msg h6").html('');
-		$('.souchang-div').css('display','none');
+		$.ajax({
+			type: "POST",
+			dataType:"json",
+			url: "http://cikewang.com/index.php?p=navigation&c=default&a=login_out",
+			success: function(data){
+				$.removeCookie('username');
+				$.removeCookie('uid');
+				$("#username").val('');
+				$("#password").val('');
+				$(".user-info-div").css("display","none");
+				$(".user-login-reg-div").css("display","");
+				$(".user-login-msg").addClass('hide');
+				$(".user-login-msg h6").html('');
+				$('.souchang-div').css('display','none');
+				location.href = "http://cikewang.com/";
+			}
+		});
 	});
 
 <!--////////////////////////////////////////////////////////////////////////////////////////////-->

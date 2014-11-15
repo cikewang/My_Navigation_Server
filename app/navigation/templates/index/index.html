@@ -101,6 +101,27 @@
 			  </div>
 		</div>
 
+		<?php if( !empty($rw_list)){ ?> 
+		<div style="margin: 10px auto;width: 938px;">		
+			<div id="my-navigation-div">
+			    <dl class="dl-horizontal">
+			      	<dt>推荐导航</dt>
+			      	<dd>
+			      		<ul class="list-inline">
+			      			<?php foreach ($rw_list as $key => $urls) { ?>
+			      			<li>
+			      			<a target='_blank' href="<?php echo $urls['url'];?>">
+			      				<?php if(!empty($urls['icon'])) { ?><img src="<?php echo $urls['icon'];?>" width=16><?php }?>
+			      				&nbsp;<?php echo $urls['page_name'];?></a>
+			      			</li>
+			      			<?php  } ?>
+			      		</ul>
+			      	</dd>
+			    </dl>
+			  </div>
+		</div>
+		 <?php } ?>
+
 		<div class="souchang-div" style="display:none;">
 			<form class="form-inline" role="form">
 	    		

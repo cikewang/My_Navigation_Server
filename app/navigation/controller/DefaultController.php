@@ -17,11 +17,7 @@ class DefaultController extends BaseController {
 	}
 	public function index()
 	{
-		if(empty($_SESSION['uid']))
-		{
-			// echo '用户没有登录';
-		}
-		else
+		if(! empty($_SESSION['uid']))
 		{
 			$cate_db = new CategoryModelDB();
 			$url_db = new UrlModelDB();
@@ -36,6 +32,10 @@ class DefaultController extends BaseController {
 
 			$this->setView('url_list',$cate_list);
 		}
+
+		$rw_db = new RecommendWebModelDB();
+		$rw_list = $rw_db->find();
+		$this->setView('rw_list',$rw_list);
 
 		$this->display("index/index.html");
 	
@@ -75,12 +75,12 @@ class DefaultController extends BaseController {
 		
 		if (empty($cate_info)) 
 		{
-			$cate_info = array('user_id'=>$user_id, 'cate_name'=> $cate_name, 'sort'=> 100, 'add_time'=> date('Y-m-d H:i:s',time()));
+			$cate_info = array('user_id'=>$user_id, 'cate_name'=> $cate_name, 'order_by'=> 100, 'add_time'=> date('Y-m-d H:i:s',time()));
 			$cate_db->insert($cate_info);
 		}
 		$cate_info = BaseModelCommon::filterMongoData($cate_info);
 
-		$url_info = array('user_id'=>$user_id, 'cate_id'=>$cate_info['_id'], 'page_name'=> $page_name, 'url'=>$url, 'icon'=>$icon, 'sort'=> 100, 'add_time'=>date('Y-m-d H:i:s',time()));
+		$url_info = array('user_id'=>$user_id, 'cate_id'=>$cate_info['_id'], 'page_name'=> $page_name, 'url'=>$url, 'icon'=>$icon, 'order_by'=> 100, 'add_time'=>date('Y-m-d H:i:s',time()));
 
 		$status = $url_db->insert($url_info);
 
@@ -160,8 +160,52 @@ class DefaultController extends BaseController {
 		}
 	}
 
+	/**
+	 * [addRecommend 添加推荐网站]
+	 */
+	function addRecommend()
+	{
+		$msg = array('code' => 0, 'msg'=>'');
+
+		$user_id = trim($_POST['uid']) !='' ? trim($_POST['uid']) : '';
+		$cate_name = isset($_POST['cate_name']) && (trim($_POST['cate_name']) == '') ? '未分类' : trim($_POST['cate_name']);
+		$page_name = trim($_POST['web_name']);
+		$url = trim($_POST['web_url']);
+		$icon = isset($_POST['web_icon_url']) && (trim($_POST['web_icon_url']) != '') ? trim($_POST['web_icon_url']) : '';
+
+		if ($user_id != $_SESSION['uid']) {
+			$msg = array('code' => -1, 'msg'=>'系统错误，请重新登录');
+			echo json_encode($msg);exit;
+		}
+
+		if (empty($page_name) || empty($url)) {
+			$msg = array('code' => -2, 'msg'=>'网站名称和网址不能为空');
+			echo json_encode($msg);exit;
+		}
+
+		$rw_db = new RecommendWebModelDB();
+		$url_info = $rw_db->findOne(array('url'=>$url,), array('_id'));
+
+		if (!empty($url_info)) {
+			$msg = array('code' => -3, 'msg'=>'该网址已经存在您的导航中');
+			echo json_encode($msg);exit;
+		}
+
+		$url_info = array('user_id'=>$user_id, 'page_name'=> $page_name, 'url'=>$url, 'icon'=>$icon, 'order_by'=> 100, 'add_time'=>date('Y-m-d H:i:s',time()));
+
+		$status = $rw_db->insert($url_info);
+
+		if (isset($status['ok']) && $status['ok'] > 0) {
+			$msg = array('code' => 1, 'msg'=>'添加成功');
+			echo json_encode($msg);exit;
+		}
+	}
+
+
 	function loginOut()
 	{
-		unset($_SESSION);
+		$_SESSION['uid'] = '';
+		$_SESSION['username'] = '';
+		echo json_encode('1');exit;
 	}
 }
