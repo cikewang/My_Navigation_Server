@@ -51,7 +51,7 @@ web-icon-img{
   bottom: 0;
   height: 30px;
   line-height: 30px;
-  position: absolute;
+  position: fixed;
   width: 100%;
   text-align: center;
   margin: 0;
@@ -60,4 +60,24 @@ web-icon-img{
 .beian{
   color:#AAA;
   margin-left: 10px;
+}
+.inform{
+  bottom: 0;
+  position: fixed;
+  width:938px;
+}
+.inform .inform-close{
+  right: 0;
+}
+.inform .inform-info{
+  text-indent:2em; 
+  position: absolute;
+  top:20;
+  right: 200;
+  width:280px;
+  height: 60px;
+}
+.inform img{
+  float: right;
+  right: 10;
 }
