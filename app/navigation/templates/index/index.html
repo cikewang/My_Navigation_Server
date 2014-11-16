@@ -78,18 +78,18 @@
 			</nav>
 		</div>
 		<div style="margin: 10px auto;width: 938px;">		
-			<div id="my-navigation-div">
+			<div class="my-navigation-div">
 				<?php if( !empty($url_list)){ ?> 
 			    <dl class="dl-horizontal">
 			    	<?php foreach ($url_list as $key => $value) { ?>
 			      	<dt><?php print_r($value['cate_name']); ?></dt>
 			      	<dd>
-			      		<ul class="list-inline">
+			      		<ul class="list-inline navigation-ul">
 			      			<?php foreach ($value['urls'] as $key => $urls) { ?>
 			      			<li>
-			      			<a target='_blank' href="<?php echo $urls['url'];?>">
-			      				<?php if(!empty($urls['icon'])) { ?><img src="<?php echo $urls['icon'];?>" width=16><?php }?>
-			      				&nbsp;<?php echo $urls['page_name'];?></a>
+			      			<a target='_blank' href="<?php echo $urls['url'];?>" title="<?php echo $urls['page_name'];?>">
+			      				<?php if(!empty($urls['icon'])) { ?><img class="web-icon-img" src="<?php echo $urls['icon'];?>" width=16><?php }?>
+			      				<?php echo $urls['page_name'];?></a>
 			      			</li>
 			      			<?php  } ?>
 			      		</ul>
@@ -103,16 +103,16 @@
 
 		<?php if( !empty($rw_list)){ ?> 
 		<div style="margin: 10px auto;width: 938px;">		
-			<div id="my-navigation-div">
+			<div class="my-navigation-div">
 			    <dl class="dl-horizontal">
-			      	<dt>推荐导航</dt>
+			      	<dt>为您推荐</dt>
 			      	<dd>
-			      		<ul class="list-inline">
+			      		<ul class="list-inline navigation-ul">
 			      			<?php foreach ($rw_list as $key => $urls) { ?>
 			      			<li>
-			      			<a target='_blank' href="<?php echo $urls['url'];?>">
-			      				<?php if(!empty($urls['icon'])) { ?><img src="<?php echo $urls['icon'];?>" width=16><?php }?>
-			      				&nbsp;<?php echo $urls['page_name'];?></a>
+			      			<a target='_blank' href="<?php echo $urls['url'];?>" title="<?php echo $urls['page_name'];?>">
+			      				<?php if(!empty($urls['icon'])) { ?><img class="web-icon-img" src="<?php echo $urls['icon'];?>" width=16><?php }?>
+			      				<?php echo $urls['page_name'];?></a>
 			      			</li>
 			      			<?php  } ?>
 			      		</ul>
@@ -144,5 +144,15 @@
 			</div>
 		</div>
 
+		<div class="footer">
+			<ul class="list-inline">
+				<li><a class="text-muted" href="#">关于本站</a></li>|
+				<li><a class="text-muted" href="#">常见问题</a></li>|
+				<li><a class="text-muted" href="#">插件下载</a></li>|
+				<li><a class="text-muted" href="#">意见反馈</a></li>
+				<li><span class="beian">京ICP备13018346号-3</span></li>
+			</ul>
+		  
+		</div>
 	</body>
 </html>
