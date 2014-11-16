@@ -72,12 +72,13 @@ web-icon-img{
 .inform .inform-info{
   text-indent:2em; 
   position: absolute;
-  top:20;
-  right: 200;
+  top:3;
+  right: 110;
   width:280px;
   height: 60px;
 }
-.inform img{
+.inform-img img{
   float: right;
   right: 10;
+  width:110px;
 }
