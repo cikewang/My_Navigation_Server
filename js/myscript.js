@@ -259,5 +259,5 @@ function login_succ()
 function my_navigation_url()
 {
 	url = "http://cikewang.com/"+$.cookie("uid");
-	$("#mynavigation").attr("href",url);
+	$(".mynavigation").attr("href",url);
 }

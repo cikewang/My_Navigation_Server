@@ -3,7 +3,7 @@
 jQuery(document).ready(function ($) {
     $("#spig").mousedown(function (e) {
         if(e.which==3){
-        showMessage("我这里不需要右击鼠标",10000);
+        showMessage("我猜你在右击鼠标",10000);
 }
 });
 $("#spig").bind("contextmenu", function(e) {
@@ -20,7 +20,6 @@ jQuery(document).ready(function ($) {
 
 //鼠标在上方时
 jQuery(document).ready(function ($) {
-    //$(".mumu").jrumble({rangeX: 2,rangeY: 2,rangeRot: 1});
     $(".mumu").mouseover(function () {
        $(".mumu").fadeTo("300", 0.3);
        msgs = ["我隐身了，你看不到我", "我会隐身哦！嘿嘿！", "别动手动脚的，把手拿开！", "把手拿开我才出来！"];
@@ -63,12 +62,11 @@ jQuery(document).ready(function ($) {
 
 //无聊讲点什么
 jQuery(document).ready(function ($) {
-
     window.setInterval(function () {
-        msgs = ["陪我聊天吧！", "我可爱吧！嘻嘻!~^_^!~~", "从前有座山，山上有座庙，庙里有个老和尚给小和尚讲故事，讲：“从前有座……”"];
+        msgs = ["对我有什么意见吗，快来<a href='http://cikewang.com/index.php?c=document&a=feedback'>点我吐槽</a>", "找到“我的导航”亮点了吗？<a href='http://cikewang.com/index.php?c=document&a=about'>点击这里</a>就知道了", "想知道如何使用“我的导航网站”吗？猛击<a href='http://cikewang.com/index.php?c=document&a=faq'>“我要学习”</a>"];
         var i = Math.floor(Math.random() * msgs.length);
         showMessage(msgs[i], 10000);
-    }, 35000);
+    }, 45000);
 });
 
 //无聊动动
