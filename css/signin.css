@@ -74,8 +74,9 @@ web-icon-img{
   position: absolute;
   top:3;
   right: 110;
-  width:280px;
+  width:290px;
   height: 60px;
+  font-size: 12px;
 }
 .inform-img img{
   float: right;

@@ -168,14 +168,11 @@ $(document).ready(function(){
 		});
 	});
 
-<!--////////////////////////////////////////////////////////////////////////////////////////////-->
-
 	$("#souchang").click(function(){
 		var cate_name = $("#cate_name").val();
 		var web_name = $("#web_name").val();
 		var web_url = $("#web_url").val();
 		var web_icon_url = $("#web_icon_url").val();
-
 
 		if ($.cookie("uid") == '' || typeof($.cookie("uid")) == 'undefined') 
 		{
