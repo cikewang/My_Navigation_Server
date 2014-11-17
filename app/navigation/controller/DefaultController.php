@@ -17,6 +17,7 @@ class DefaultController extends BaseController {
 	}
 	public function index()
 	{
+		$username = '';
 		if(! empty($_SESSION['uid']))
 		{
 			$cate_db = new CategoryModelDB();
@@ -30,15 +31,15 @@ class DefaultController extends BaseController {
 				$value['urls'] = $url_db->find( array('cate_id'=>$value['_id']));
 			}
 
+			$username = $_SESSION['username'];
 			$this->setView('url_list',$cate_list);
 		}
 
 		$rw_db = new RecommendWebModelDB();
 		$rw_list = $rw_db->find();
 		$this->setView('rw_list',$rw_list);
-
+		$this->setView('username',$username);
 		$this->display("index/index.html");
-	
 		
 	}
 
