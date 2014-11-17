@@ -14,6 +14,13 @@ class DocumentController extends BaseController {
 		self::$controller = $controller;
 		self::$action = $action;
 		session_start();
+		$username = '';
+
+		if (isset($_SESSION['username'])) 
+		{
+			$username = $_SESSION['username'];
+		}
+		$this->setView('username',$username);
 	}
 
 	/**
@@ -22,7 +29,7 @@ class DocumentController extends BaseController {
 	 */
 	public function about()
 	{
-		$this->setView('username',$_SESSION['username']);
+
 		$this->display("document/about.html");
 	}
 
