@@ -1,3 +1,7 @@
+.w{
+  width:980px;
+  margin: 0 auto;
+}
 body {
   background-color: #eee;
 }
@@ -64,7 +68,7 @@ web-icon-img{
 .inform{
   bottom: 0;
   position: fixed;
-  width:938px;
+  width:980px;
 }
 .inform .inform-close{
   right: 0;
@@ -82,4 +86,14 @@ web-icon-img{
   float: right;
   right: 10;
   width:110px;
+}
+.blog-description {
+    color: #999;
+    font-size: 20px;
+}
+.blog-main p {
+  text-indent:2em; 
+  margin: 0 0 10px;
+  font-size: 18px;
+  line-height: 1.5;
 }

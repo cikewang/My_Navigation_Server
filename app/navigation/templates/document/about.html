@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>我的导航</title>
+		<title>关于本站-我的导航</title>
 		<meta name="keywords" content="上网导航,网址大全,网址导航,我的导航上网导航,我的导航网址,我的导航,我的导航网址大全,我的导航活动, 抽奖活动">
 		<meta name="description" content="我的导航是最方便收藏网址的上网导航，您可以很方便的收藏、管理网址，并汇集最优秀的网站及资源。及时收录影视、音乐、小说、游戏等分类的网址和内容，让您的网络生活更简单精彩。">
 		<link rel="shortcut icon" href="./images/my_navigation.ico" type="image/x-icon">
@@ -88,74 +88,45 @@
 			  </div>
 			</nav>
 		</div>
-		<div class="w">		
-			<div class="my-navigation-div">
-				<?php if( !empty($url_list)){ ?> 
-			    <dl class="dl-horizontal">
-			    	<?php foreach ($url_list as $key => $value) { ?>
-			      	<dt><?php print_r($value['cate_name']); ?></dt>
-			      	<dd>
-			      		<ul class="list-inline navigation-ul">
-			      			<?php foreach ($value['urls'] as $key => $urls) { ?>
-			      			<li>
-			      			<a target='_blank' href="<?php echo $urls['url'];?>" title="<?php echo $urls['page_name'];?>">
-			      				<?php if(!empty($urls['icon'])) { ?><img class="web-icon-img" src="<?php echo $urls['icon'];?>" width=16><?php }?>
-			      				<?php echo $urls['page_name'];?></a>
-			      			</li>
-			      			<?php  } ?>
-			      		</ul>
-			      	</dd>
-			      	<?php } ?>
-			    </dl>
-			    <?php } ?>
-			    
-			  </div>
-		</div>
-
-		<?php if( !empty($rw_list)){ ?> 
-		<div class="w">		
-			<div class="my-navigation-div">
-			    <dl class="dl-horizontal">
-			      	<dt>为您推荐</dt>
-			      	<dd>
-			      		<ul class="list-inline navigation-ul">
-			      			<?php foreach ($rw_list as $key => $urls) { ?>
-			      			<li>
-			      			<a target='_blank' href="<?php echo $urls['url'];?>" title="<?php echo $urls['page_name'];?>">
-			      				<?php if(!empty($urls['icon'])) { ?><img class="web-icon-img" src="<?php echo $urls['icon'];?>" width=16><?php }?>
-			      				<?php echo $urls['page_name'];?></a>
-			      			</li>
-			      			<?php  } ?>
-			      		</ul>
-			      	</dd>
-			    </dl>
-			  </div>
-		</div>
-		 <?php } ?>
-
-		<div class="souchang-div" style="display:none;">
-			<form class="form-inline" role="form">
-	    		
-				<div class="cate-name-div form-group input-group input-group-sm">
-					<div class="input-group-addon">分类：</div>
-					<input class="form-control" type="text" placeholder="网址分类" id="cate_name" name="cate_name" value="" >
-				</div>	
-				<div class="web-name-div form-group input-group input-group-sm">
-					<div class="input-group-addon input-group-sm">名称：</div>
-					<input class="form-control" type="text" placeholder="网站名称" id="web_name" name="web_name" value="">
-				</div>
-				<div class="web-url-div form-group input-group input-group-sm">
-					<div class="input-group-addon">网址：</div>
-					<input class="form-control" type="text" placeholder="网站地址" id="web_url" name="web_url" value="">
-				</div>
-			  <button type="button" class="btn btn-primary btn-xs" id="souchang">提交收藏</button>
-			</form>
-			<div class="sc-msg pull-left hide">
-				<h6 class="pull-right text-danger"></h6>
-			</div>
-		</div>
 
 		<div class="w">
+			<div class="blog-header">
+				<h1 class="blog-title">&nbsp;</h1>
+			</div>
+
+			<div class="row">
+					<!-- 左边区域 开始 -->
+			        <div class="col-sm-8 blog-main">
+			          <div class="blog-post">
+			            <h2 class="blog-post-title">关于本站</h2>
+			            <p>
+			            	<strong>我的导航网站</strong>的宗旨是方便网友们快速找到自已需要的网站，而不用去记太多复杂的网址,<strong>我的导航</strong>更方便用户收藏喜爱的网站，随时随地可以找到您收藏的网址；同时提供为您推荐大家都喜欢的网站。
+
+			            </p>
+			          </div><!-- /.blog-post -->
+			        </div><!-- /.blog-main -->
+			        <!-- 左边区域 结束 -->
+			        <!-- 右边区域 开始 -->
+			        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+			          
+			          <div class="sidebar-module">
+			            <h4>我的导航</h4>
+			            <ol class="list-unstyled">
+			              <li><a href="http://cikewang.com/index.php?c=document&a=about">关于本站</a></li>
+			              <li><a href="http://cikewang.com/index.php?c=document&a=faq">常见问题</a></li>
+			              <li><a href="http://cikewang.com/download/My_Navigation.crx" target="_blank">插件下载</a></li>
+			              <li><a href="http://cikewang.com/index.php?c=document&a=feedback">意见吐槽</a></li>
+			              <li><a href="http://cikewang.com/index.php?c=document&a=contact">联系我们</a></li>
+			            </ol>
+			          </div>
+			        </div><!-- /.blog-sidebar -->
+			      </div>
+			      <!-- 右边区域 结束 -->
+
+
+		</div>
+
+		<div class="w" style="display:none;">
 			<div role="alert" class="my-navigation-div inform alert alert-dismissible fade in">
 				<button data-dismiss="alert" class="close inform-close" type="button">
 					<span aria-hidden="true">×</span>
