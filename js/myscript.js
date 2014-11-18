@@ -245,7 +245,11 @@ $(document).ready(function(){
 		});
 	});
 
-
+	// 隐藏提示
+	setTimeout(function(){
+		// $(".inform ").hide('slow');
+		$(".inform ").alert('close')
+	},5000);
 });
 
 function login_succ()
