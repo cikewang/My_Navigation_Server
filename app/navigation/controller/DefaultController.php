@@ -65,7 +65,7 @@ class DefaultController extends BaseController {
 
 		$cate_db = new CategoryModelDB();
 		$url_db = new UrlModelDB();
-		$url_info = $url_db->findOne(array('url'=>$url,), array('_id'));
+		$url_info = $url_db->findOne(array('url'=>$url,'user_id'=>$_SESSION['uid']), array('_id'));
 
 		if (!empty($url_info)) {
 			$msg = array('code' => -3, 'msg'=>'该网址已经存在您的导航中');
