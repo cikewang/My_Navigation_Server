@@ -97,7 +97,7 @@ class BaseModelCommon {
 		{
 			if (is_array ($val)) 
 			{
-				self::filterArr($val);
+				self::filterMongoData($val);
 			}
 			elseif(is_object($val) && $key == '_id')
 			{

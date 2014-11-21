@@ -245,6 +245,20 @@ $(document).ready(function(){
 		});
 	});
 
+	//添加到收藏夹
+    $("#favorites").click(function () 
+    {
+        var ctrl = (navigator.userAgent.toLowerCase()).indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL'; 
+        if (document.all) { 
+        	window.external.addFavorite('http://www.cikewang.com', '我的导航') 
+        } else if (window.sidebar) { 
+        	window.sidebar.addPanel('我的导航', 'http://www.cikewang.com', "") 
+        } else {　　　　//添加收藏的快捷键 
+        	alert('添加失败\n您可以尝试通过快捷键' + ctrl + ' + D 加入到收藏夹~') 
+        } 
+    });
+
+	 
 	// 隐藏提示
 	setTimeout(function(){
 		// $(".inform ").hide('slow');

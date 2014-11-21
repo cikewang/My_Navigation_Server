@@ -42,7 +42,7 @@ a:hover{
   color: #777;
 }
 .navigation-ul li {
-  width:100px;
+  width:102px;
   height: 18px;
   margin-bottom: 8px;
   overflow: hidden;
@@ -83,6 +83,7 @@ web-icon-img{
   width:290px;
   height: 60px;
   font-size: 12px;
+  right: 100px;
 }
 .inform-img img{
   float: right;
