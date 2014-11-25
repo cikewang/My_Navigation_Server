@@ -17,7 +17,7 @@ class DefaultController extends BaseController {
 	}
 	public function index()
 	{
-		$auth_code = isset($_GET['d']) && !empty($_GET['d']) ? trim($_GET['d']) : '';
+		$auth_code = isset($_GET['u']) && !empty($_GET['u']) ? trim($_GET['u']) : '';
 
 		$username = '';
 
@@ -28,8 +28,16 @@ class DefaultController extends BaseController {
 
 			$user_id = empty($_SESSION['uid']) ? $auth_code : $_SESSION['uid'];
 
-			$cate_list = $cate_db->find(array('user_id' => "$user_id"));
+			$cate_list = $cate_db->find(array('user_id' => $user_id));
 			
+			if(empty($cate_list))
+			{
+				$user_db = new UsersModelDB();
+				$user_info = $user_db->findOne(array('username'=>$user_id));
+				$user_info = BaseModelCommon::filterMongoData($user_info);
+				$cate_list = $cate_db->find(array('user_id' => $user_info['_id']));
+			}
+
 			$cate_list = BaseModelCommon::filterMongoData($cate_list);
 		
 			foreach ($cate_list as $key => &$value) {
@@ -207,7 +215,6 @@ class DefaultController extends BaseController {
 			echo json_encode($msg);exit;
 		}
 	}
-
 
 	function loginOut()
 	{
