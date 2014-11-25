@@ -17,13 +17,18 @@ class DefaultController extends BaseController {
 	}
 	public function index()
 	{
+		$auth_code = isset($_GET['d']) && !empty($_GET['d']) ? trim($_GET['d']) : '';
+
 		$username = '';
-		if(! empty($_SESSION['uid']))
+
+		if(! empty($_SESSION['uid']) || ! empty($auth_code))
 		{
 			$cate_db = new CategoryModelDB();
 			$url_db = new UrlModelDB();
 
-			$cate_list = $cate_db->find(array('user_id' => $_SESSION['uid']));
+			$user_id = empty($_SESSION['uid']) ? $auth_code : $_SESSION['uid'];
+
+			$cate_list = $cate_db->find(array('user_id' => "$user_id"));
 			
 			$cate_list = BaseModelCommon::filterMongoData($cate_list);
 		
@@ -31,9 +36,10 @@ class DefaultController extends BaseController {
 				$value['urls'] = $url_db->find( array('cate_id'=>$value['_id']));
 			}
 
-			$username = $_SESSION['username'];
+			$username = isset($_SESSION['username']) && ! empty($_SESSION['username']) ? $_SESSION['username'] : '';
 			$this->setView('url_list',$cate_list);
 		}
+
 
 		$rw_db = new RecommendWebModelDB();
 		$rw_list = $rw_db->find();

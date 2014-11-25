@@ -1,0 +1,5 @@
+User-Agent: Baiduspider
+Allow: /
+Disallow: /config
+Disallow: /libs
+

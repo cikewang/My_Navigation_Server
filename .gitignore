@@ -2,3 +2,4 @@ app/jd
 .tag*
 config/DB*
 config/DBConfig.php
+.htaccess
