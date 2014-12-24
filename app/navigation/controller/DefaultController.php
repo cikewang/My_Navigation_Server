@@ -41,7 +41,19 @@ class DefaultController extends BaseController {
 			$cate_list = BaseModelCommon::filterMongoData($cate_list);
 		
 			foreach ($cate_list as $key => &$value) {
-				$value['urls'] = $url_db->find( array('cate_id'=>$value['_id']));
+				$url = $url_db->find( array('cate_id'=>$value['_id']));
+			
+				// foreach ($url as $k => &$v) {
+				// 	$icon_url = '';
+				// 	if(! empty($v['icon']))
+				// 	{
+				// 		$url_arr = parse_url($v['icon']);
+				// 		$icon_url = md5($url_arr['host']);
+				// 	}
+				// 	$v['icon'] = 'http://img.cikewang.com/icon/'.$icon_url.'.png';
+				
+				// }
+				$value['urls'] = $url;
 			}
 
 			$username = isset($_SESSION['username']) && ! empty($_SESSION['username']) ? $_SESSION['username'] : '';
@@ -67,6 +79,15 @@ class DefaultController extends BaseController {
 		$url = trim($_POST['web_url']);
 		$icon = isset($_POST['web_icon_url']) && (trim($_POST['web_icon_url']) != '') ? trim($_POST['web_icon_url']) : '';
 
+		$is_cate_id = TRUE;
+
+		// 区分是分类id，还是分类名称
+		if (! preg_match('/[\d|a-z]{24}/', $cate_name)) 
+		{
+			$is_cate_id = FALSE;
+		}
+
+
 		if ($user_id != $_SESSION['uid']) {
 			$msg = array('code' => -1, 'msg'=>'系统错误，请重新登录');
 			echo json_encode($msg);exit;
@@ -86,8 +107,17 @@ class DefaultController extends BaseController {
 			echo json_encode($msg);exit;
 		}
 
-		$cate_info = $cate_db->findOne(array('user_id'=>$user_id, 'cate_name'=>$cate_name), array('_id'));
-		
+		$cate_info = '';
+		// 查询分类是否存在，存在返回分类ID
+		if ($is_cate_id) 
+		{
+			$cate_info = $cate_db->findOne(array('user_id'=>$user_id, '_id'=> new MongoId($cate_name)), array('_id'));
+		}
+		else
+		{
+			$cate_info = $cate_db->findOne(array('user_id'=>$user_id, 'cate_name'=>$cate_name), array('_id'));
+		}
+				
 		if (empty($cate_info)) 
 		{
 			$cate_info = array('user_id'=>$user_id, 'cate_name'=> $cate_name, 'order_by'=> 100, 'add_time'=> date('Y-m-d H:i:s',time()));
@@ -214,6 +244,19 @@ class DefaultController extends BaseController {
 			$msg = array('code' => 1, 'msg'=>'添加成功');
 			echo json_encode($msg);exit;
 		}
+	}
+
+	/**
+	* 获得分类信息
+	*/
+	function getCategory()
+	{
+		$cate_db = new CategoryModelDB();
+		$user_id = empty($_SESSION['uid']) ? $auth_code : $_SESSION['uid'];
+		$cate_list = $cate_db->find(array('user_id' => $user_id));
+		
+		$cate_list = BaseModelCommon::filterMongoData($cate_list);
+		echo json_encode($cate_list);exit;
 	}
 
 	function loginOut()

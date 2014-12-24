@@ -25,7 +25,9 @@ a:hover{
   line-height: 45px;
 }
 .souchang-div{
-  margin: 0 auto;width: 768px;
+  margin: 0 auto;
+  width: 768px;
+  height: 100px;
 }
 
 .my-navigation-div{

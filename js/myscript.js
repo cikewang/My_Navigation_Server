@@ -78,7 +78,7 @@ $(document).ready(function(){
 					setTimeout(function(i){
 						login_succ();
 						my_navigation_url();
-						location.href = "http://cikewang.com/";
+						location.href = "http://cikewang.com/"+data.msg.username;
 					},500);
 					
 				}
