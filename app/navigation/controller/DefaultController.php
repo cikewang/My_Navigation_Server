@@ -87,6 +87,17 @@ class DefaultController extends BaseController {
 			$is_cate_id = FALSE;
 		}
 
+		// 判断URL是否有添加 http:// 没有添加，自动添加
+		if (! preg_match('/^http:\/\//', $url)) 
+		{
+			$path = parse_url($url);
+			$url = 'http://'.$path['path'];
+			if(isset($path['query']) && ! empty($path['query']))
+			{
+				$url .= '?'.$path['query'];
+			}
+			
+		}
 
 		if ($user_id != $_SESSION['uid']) {
 			$msg = array('code' => -1, 'msg'=>'系统错误，请重新登录');
