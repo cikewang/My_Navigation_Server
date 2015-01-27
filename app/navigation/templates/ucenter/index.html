@@ -21,6 +21,7 @@
 	</head>
 
 	<body>
+			<body>
 		<div>
 			<nav class="navbar navbar-default" role="navigation">
 			  <div class="container-fluid">
@@ -81,117 +82,58 @@
 			  </div>
 			</nav>
 		</div>
-		<div class="w">		
-			<div class="my-navigation-div">
-				<?php if( !empty($url_list)){ ?> 
-			    <dl class="dl-horizontal">
-			    	<?php foreach ($url_list as $key => $value) { ?>
-			      	<dt><?php print_r($value['cate_name']); ?></dt>
-			      	<dd>
-			      		<ul class="list-inline navigation-ul">
-			      			<?php foreach ($value['urls'] as $key => $urls) { ?>
-			      			<li>
-			      			<a target='_blank' href="<?php echo $urls['url'];?>" title="<?php echo $urls['page_name'];?>">
 
-			      				<?php if(!empty($urls['icon'])) { ?>
-			      				<img class="web-icon-img" src="<?php echo $urls['icon'];?>" width=16>
-			      				<?php } else { ?>
-			      				<img class="web-icon-img" src="http://cikewang.com/images/dh.png" width=16>
-			      				<?php }?>
-			      				<?php echo $urls['page_name'];?></a>
-			      			</li>
-			      			<?php  } ?>
-			      		</ul>
-			      	</dd>
-			      	<?php } ?>
-			    </dl>
-			    <?php } else { ?>
-			    	<div class="jumbotron">
-			    		<h3>我的导航，我做主</h3>
-			    		<span class="blog-description">您还没有收藏网站，快登陆到“我的导航”，收藏试试吧</span>
-			    	</div>
-			    <?php } ?>
-			  </div>
-		</div>
-
-		<?php if( !empty($rw_list)){ ?> 
-		<div class="w">		
-			<div class="my-navigation-div">
-			    <dl class="dl-horizontal">
-			      	<dt>为您推荐</dt>
-			      	<dd>
-			      		<ul class="list-inline navigation-ul">
-			      			<?php foreach ($rw_list as $key => $urls) { ?>
-			      			<li>
-			      			<a target='_blank' href="<?php echo $urls['url'];?>" title="<?php echo $urls['page_name'];?>">
-			      				<?php if(!empty($urls['icon'])) { ?><img class="web-icon-img" src="<?php echo $urls['icon'];?>" width=16><?php }?>
-			      				<?php echo $urls['page_name'];?></a>
-			      			</li>
-			      			<?php  } ?>
-			      		</ul>
-			      	</dd>
-			    </dl>
-			</div>
-			
-		</div>
-		 <?php } ?>
-
-		<div class="souchang-div" style="display:none;">
-			<form class="form-inline" role="form">
-	    		
-				<div class="cate-name-div form-group input-group input-group-sm">
-					<div class="input-group-addon">分类：</div>
-					<input class="form-control" type="text" placeholder="网址分类" id="cate_name" name="cate_name" value="" >
-				</div>	
-				<div class="web-name-div form-group input-group input-group-sm">
-					<div class="input-group-addon input-group-sm">名称：</div>
-					<input class="form-control" type="text" placeholder="网站名称" id="web_name" name="web_name" value="">
-				</div>
-				<div class="web-url-div form-group input-group input-group-sm">
-					<div class="input-group-addon">网址：</div>
-					<input class="form-control" type="text" placeholder="网站地址" id="web_url" name="web_url" value="">
-				</div>
-			  <button type="button" class="btn btn-primary btn-xs" id="souchang">提交收藏</button>
+		<div  class="w">
+			<h3>修改分类</h3>
+			<form action="http://cikewang.com/index.php?c=ucenter&a=order" method="post">
+				<table class="table table-bordered">
+					<tr>
+			          <th width="100px;">排序</th>
+			          <th>分类名称</th>
+			          <th>操作</th>
+			        </tr>
+				<?php foreach ($cate_list as $k => $v) { ?>
+					<tr class="cate_<?php echo $v['_id'];?>">
+						<td><input type="text" id="order_by" name="order[<?php echo $v['_id'];?>]" value="<?php echo $v['order_by'];?>" style="width:80px"></td>
+						<td><a style="font-size:14px;" href="http://cikewang.com/index.php?c=ucenter&a=url&cate_id=<?php echo $v['_id'];?>" style=""><?php echo $v['cate_name'];?></a></td>
+						<td>
+							<a  class="btn btn-primary btn-xs" href="http://cikewang.com/index.php?c=ucenter&a=url&cate_id=<?php echo $v['_id'];?>">分类下导航</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<button class="btn btn-info btn-xs modify_cate"  type="button" cid="<?php echo $v['_id'];?>" rel="<?php echo $v['cate_name'];?>" data-toggle="modal" data-target=".bs-example-modal-sm">修改</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						 	<a  class="btn btn-danger btn-xs delete_cate" rel="<?php echo $v['_id'];?>" href="javascript:void(0);">删除</a>
+						</td>
+					</tr>
+				<?php }?>
+				</table>
+				<button type="submit" class="btn btn-primary btn-sm">排序</button>
 			</form>
-			<div class="sc-msg pull-left hide">
-				<h6 class="pull-right text-danger"></h6>
-			</div>
-		</div>
-	
-		<div class="w">		
-			<div class="my-navigation-div">
-			    <dl class="dl-horizontal">
-			      	<dt>优秀导航</dt>
-			      	<dd>
-			      		<ul class="list-inline navigation-ul">
-			      			<li>
-			      			<a target='_blank' href="http://cikewang.com/5466a3bfb2e1eaf1488b4567" title="我的导航-libo">
-			      				libo
-			      			</a>
-			      			</li>
-			      		</ul>
-			      	</dd>
-			    </dl>
-			</div>
 		</div>
 
-
-		<div class="w">
-			<div role="alert" class="my-navigation-div inform alert alert-dismissible fade in">
-				<button data-dismiss="alert" class="close inform-close" type="button">
-					<span aria-hidden="true">×</span>
-					<span class="sr-only">Close</span>
-				</button>
-				<div class="inform-info">
-					<p class="text-info">
-						提示：推荐使用<a class="text-danger" href="http://chrome.360.cn/" target="_blank">“360极速浏览器”</a>，并安装<a class="text-danger" href="https://ext.chrome.360.cn/webstore/detail/iipbfeobdcckmlapebacemfbaibbhkfc"  target="_blank">“我的导航”</a>插件，更方便收藏管理“我的导航”
-					</p>
-				</div>
-				<div class="inform-img">
-					<img src="./images/inform.jpg" alt="温馨提示">
-				</div>
-			</div>
+		<!-- Small modal -->
+		<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		    	<form action="http://cikewang.com/index.php?c=ucenter&a=m_cate" role="form" method="post">
+		     	<div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">修改分类</h4>
+			      </div>
+			      <div class="modal-body">
+			        <div class="form-group" style="height:40px;">
+			        	<input type="hidden" class="form-control category_id" id="category_id" name="category_id" placeholder="id" value="">
+					    <input type="text" class="form-control category_name" id="category_name" name="category_name" placeholder="分类名称" value="">
+					</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        <button type="submit" class="btn btn-primary">提交修改</button>
+			      </div>
+			    </form>
+		    </div>
+		  </div>
 		</div>
+
 		<div class="footer">
 			<ul class="list-inline">
 				<li><a class="text-muted" href="http://cikewang.com/index.php?c=document&a=about" target="_blank">关于本站</a></li>|
@@ -217,8 +159,6 @@
 		
 		<!-- 淘宝推广、百度统计、百度分享 JS -->
 		<script type="text/javascript"> 
-			(function(win,doc){ var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0]; if (!win.alimamatk_show) { s.charset = "gbk"; s.async = true; s.src = "http://a.alimama.cn/tkapi.js"; h.insertBefore(s, h.firstChild); }; var o = { pid: "mm_26798783_2416390_28066391",/*推广单元ID，用于区分不同的推广渠道*/ appkey: "",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/ unid: ""/*自定义统计字段*/ }; win.alimamatk_onload = win.alimamatk_onload || []; win.alimamatk_onload.push(o); })(window,document);
-			window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"6","bdPos":"left","bdTop":"100"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1bc58998ba7c344e32ed4427fa7b016b' type='text/javascript'%3E%3C/script%3E"));
 		</script>

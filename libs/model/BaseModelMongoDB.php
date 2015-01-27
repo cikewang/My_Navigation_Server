@@ -55,10 +55,10 @@ class BaseModelMongoDB {
 	 * [find 查询表中所有数据]
 	 * @return [type] [description]
 	 */
-	public function find($where = array(), $fields = array(), $master_or_slave = 'slave')
+	public function find($where = array(), $fields = array(), $master_or_slave = 'slave', $order_by='')
 	{
 		$this->_sendQuery($master_or_slave);
-		$data = $this->db->find($where, $fields);
+		$data = $this->db->find($where, $fields)->sort(array('order_by'=>-1));
 
 		if (empty($data)) {
 			return FALSE;
@@ -159,4 +159,11 @@ class BaseModelMongoDB {
     	return BaseModelDBConnect::getDatabaseName();
     }
 
+
+    public function remove(array $where, array $options = array())
+    {	
+    	$this->_sendQuery('master');
+    	$count = $this->db->remove($where);
+
+    }
 }

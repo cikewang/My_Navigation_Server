@@ -264,6 +264,75 @@ $(document).ready(function(){
 		// $(".inform ").hide('slow');
 		$(".inform ").alert('close')
 	},5000);
+
+
+	$('.delete_cate').click(function(){
+		var id = $(this).attr('rel');
+		if(id == '')
+		{
+			alert('出错了请重试');
+			return false;
+		}
+		if(confirm('删除该分类的同时，将删除分类下的所有导航，您还确认删除吗？'))
+		{
+			$.ajax({
+				type: "POST",
+				dataType:"json",
+				url: "http://cikewang.com/index.php?c=ucenter&a=delete",
+				data: {"cate_id":id},
+				success: function(data){
+					$('.cate_'+data).addClass('hide');
+					alert('删除成功');
+				},
+				error:function(data){
+					alert('出错了，请重试');
+				}
+			});
+		}
+	});
+
+	$('.modify_cate').click(function(){
+		var cate_id = $(this).attr('cid');
+		var cate_name = $(this).attr('rel');
+		$('.category_name').val(cate_name);
+		$('.category_id').val(cate_id);
+	});
+
+
+	$('.delete_url').click(function(){
+		var id = $(this).attr('rel');
+		if(id == '')
+		{
+			alert('出错了请重试');
+			return false;
+		}
+		if(confirm('您确认删除吗？'))
+		{
+			$.ajax({
+				type: "POST",
+				dataType:"json",
+				url: "http://cikewang.com/index.php?c=ucenter&a=delete_url",
+				data: {"id":id},
+				success: function(data){
+					$('.id_'+data).addClass('hide');
+					alert('删除成功');
+				},
+				error:function(data){
+					alert('出错了，请重试');
+				}
+			});
+		}
+	});
+
+	$('.modify_url').click(function(){
+		var url_id = $(this).attr('uid');
+		var url_name = $(this).attr('name');
+		var url = $(this).attr('herf');
+		$('.url_id').val(url_id);
+		$('.page_name').val(url_name);
+		$('.url').val(url);
+	});
+
 });
 
 function login_succ()

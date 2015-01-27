@@ -42,17 +42,6 @@ class DefaultController extends BaseController {
 		
 			foreach ($cate_list as $key => &$value) {
 				$url = $url_db->find( array('cate_id'=>$value['_id']));
-			
-				// foreach ($url as $k => &$v) {
-				// 	$icon_url = '';
-				// 	if(! empty($v['icon']))
-				// 	{
-				// 		$url_arr = parse_url($v['icon']);
-				// 		$icon_url = md5($url_arr['host']);
-				// 	}
-				// 	$v['icon'] = 'http://img.cikewang.com/icon/'.$icon_url.'.png';
-				
-				// }
 				$value['urls'] = $url;
 			}
 
