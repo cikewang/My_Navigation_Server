@@ -25,6 +25,7 @@ require ASSASSIN_PATH_LIBS.'basics.php';
 BaseModelRouter::route();
 
 $class = BaseModelCommon::getFormatName($_GET[ASSASSIN_CONTROLLER], 'class') ;
+$class = htmlspecialchars($class);
 $class .= 'Controller';
 
 $controller = new $class($_GET[ASSASSIN_CONTROLLER], $_GET[ASSASSIN_ACTION]);
