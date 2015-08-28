@@ -77,7 +77,7 @@ class DefaultController extends BaseController {
 		}
 
 		// 判断URL是否有添加 http:// 没有添加，自动添加
-		if (! preg_match('/^http:\/\//', $url)) 
+		if (! preg_match('/^http[s?]:\/\//', $url)) 
 		{
 			$path = parse_url($url);
 			$url = 'http://'.$path['path'];
