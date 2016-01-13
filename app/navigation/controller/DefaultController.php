@@ -251,6 +251,7 @@ class DefaultController extends BaseController {
 	*/
 	function getCategory()
 	{
+		$auth_code = isset($_GET['u']) && !empty($_GET['u']) ? trim($_GET['u']) : '';
 		$cate_db = new CategoryModelDB();
 		$user_id = empty($_SESSION['uid']) ? $auth_code : $_SESSION['uid'];
 		$cate_list = $cate_db->find(array('user_id' => $user_id));
