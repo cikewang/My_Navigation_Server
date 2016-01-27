@@ -1,6 +1,5 @@
 .w{
-  width:980px;
-  margin: 5px auto;
+  margin: 20px;
 }
 body {
   background-color: #eee;
@@ -44,7 +43,7 @@ a:hover{
   color: #777;
 }
 .navigation-ul li {
-  width:102px;
+  width:130px;
   height: 18px;
   margin-bottom: 8px;
   overflow: hidden;
