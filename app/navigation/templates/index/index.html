@@ -90,9 +90,11 @@
 			      	<dd>
 			      		<ul class="list-inline navigation-ul">
 			      			<?php foreach ($value['urls'] as $key => $urls) { ?>
-			      			<li>
+								<?php if($uid != $urls['user_id'] && $urls['is_open']==1) { ?>
+								<?php	continue;?>
+								<?php }?>
+			      			<li <?php if($urls['is_open']==1){?> style="border:1px solid #ddd;height:18px;width:130px;"<?php } ?>>
 			      			<a target='_blank' href="<?php echo $urls['url'];?>" title="<?php echo $urls['page_name'];?>">
-
 			      				<?php if(!empty($urls['icon'])) { ?>
 			      				<img class="web-icon-img" src="<?php echo $urls['icon'];?>" width=16>
 			      				<?php } else { ?>
@@ -183,9 +185,10 @@
 			    </dl>
 			</div>
 		</div>
-
+	
 
 		<div class="w">
+			<?php if(!isset($uid) || empty($uid)){?>
 			<div role="alert" class="my-navigation-div inform alert alert-dismissible fade in">
 				<button data-dismiss="alert" class="close inform-close" type="button">
 					<span aria-hidden="true">×</span>
@@ -200,6 +203,7 @@
 					<img src="./images/inform.jpg" alt="温馨提示">
 				</div>
 			</div>
+			<?php } ?>
 		</div>
 		<div class="footer">
 			<ul class="list-inline">
@@ -212,17 +216,19 @@
 			</ul>
 		  
 		</div>
-		<!--小人只在首页显示 start*-->
+		<!--小人只在首页显示 start
 		<div id="spig" class="spig">
 		    <div id="message">正在加载中……</div>
 		    <div id="mumu" class="mumu"></div>
 		</div>
+		<script type="text/javascript" src="./js/spig.js"></script>
+		*-->
 		<!--小人end*-->
 		<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 		<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 		<script src="./js/jquery.cookie.js"></script>
 		<script src="./js/myscript.js"></script>
-		<script type="text/javascript" src="./js/spig.js"></script>
+		
 		
 		<!-- 淘宝推广、百度统计、百度分享 JS -->
 		<script type="text/javascript"> 
